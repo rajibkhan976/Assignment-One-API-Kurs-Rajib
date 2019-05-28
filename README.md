@@ -29,3 +29,9 @@ Example: curl -X PUT localhost:3000/posts/3 -H "ContentType:application/json" -d
 5. PATCH: The PATCH method is used to apply partial modifications to a resource.
 Example: curl -X PATCH localhost:3000/posts/3 -H "ContentType:application/json" -d '{"title": "Linnaeus University"}'
 ```
+"http://localhost:3000/users" är en URI, beskriv vilka delar den består av och vad de kallas.
+```
+1. http - is the Scheme
+2. //localhost:3000 - is the Authority
+3. /users - is the Path
+```
