@@ -35,3 +35,12 @@ Example: curl -X PATCH localhost:3000/posts/3 -H "ContentType:application/json" 
 2. //localhost:3000 - is the Authority
 3. /users - is the Path
 ```
+På vilka tre sätt kan man skicka in parametrar i en HTTP-request? Ge exempel med curl.
+```
+It is possible to send parameters in a HTTP request in two different ways.
+Example: 
+1. curl -X PUT localhost:3000/posts/3 -H "ContentType:application/json" -d '{"title": "LNU", "body": "Informatics"}'
+Here the parameter can be accessed by using req.params.id.
+2. curl -X PATCH localhost:3000/posts/?postId=3 -H "ContentType:application/json" -d '{"title": "Linnaeus University"}'
+Here the parameter can be accessed by using req.query.postId.
+```
