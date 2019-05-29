@@ -1,3 +1,4 @@
+//method for adding students through HTTP POST method
 addStudent = (req, res, next) => {
 	req.models.Student.create({
 		students: {
@@ -16,7 +17,7 @@ addStudent = (req, res, next) => {
 		next(error)
 	})
 }
-
+//method for listing students through HTTP GET method
 getStudents = (req, res, next) => {
 	var query;
 	if (req.query.name) {
@@ -32,7 +33,7 @@ getStudents = (req, res, next) => {
 		next(error)
 	})
 }
-
+//method for getting students by id through HTTP GET method
 getStudentById = (req, res, next) => {
 	req.models.Student.findById(req.params.id).then((student) => {
 		return res.send(student);
@@ -40,8 +41,9 @@ getStudentById = (req, res, next) => {
 		next(error)
 	})
 }
-
+//method for updating student by id through HTTP PUT method
 updateStudentByID = (req, res, next) => {
+	//update student based on parameter
 	req.models.Student.updateOne({'students._id': req.params.id}, {
 		students: {
 			_id: req.body.students._id,
@@ -69,6 +71,7 @@ updateStudentByID = (req, res, next) => {
 	}).catch((error) => {
 		next(error)
 	})
+	//update student based on query parameter
 	var updateQuery;
 	if (req.query._id) {
 		updateQuery = req.models.Student.updateOne({'students._id': req.query._id}, {
@@ -101,10 +104,22 @@ updateStudentByID = (req, res, next) => {
 		})
 	}
 }
+//method for deleting student by id through HTTP DELETE method
+deleteStudentById = (req, res, next) => {
+	req.models.Student.findByIdAndDelete(req.params.id).then((deleted) => {
+		if (deleted) {
+			return res.send(deleted).status(200);
+		}
+		res.sendStatus(204);
+	}).catch((error) => {
+		next(error)
+	})
+}
 
 module.exports = {
 	addStudent,
 	getStudents,
 	getStudentById,
-	updateStudentByID
+	updateStudentByID,
+	deleteStudentById
 }
