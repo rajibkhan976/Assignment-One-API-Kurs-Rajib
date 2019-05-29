@@ -46,3 +46,8 @@ Here the parameter can be accessed by using req.params.id.
 2. curl -X PATCH localhost:3000/posts/?postId=3 -H "ContentType:application/json" -d '{"title": "Linnaeus University"}'
 Here the parameter can be accessed by using req.query.postId.
 ```
+Feedback
+```
+The course is very useful and well structured.
+The practice excercise was also very effective in understanding the fundamental concepts.
+```
