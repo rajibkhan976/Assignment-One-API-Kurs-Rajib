@@ -18,8 +18,22 @@ addStudent = (req, res, next) => {
 }
 
 getStudents = (req, res, next) => {
-	req.models.Student.find().then((students) => {
+	var query;
+	if (req.query.name) {
+		query = req.models.Student.findOne({'students.name': req.query.name});
+	} else {
+		query = req.models.Student.find();
+	}
+	query.exec().then((students) => {
 		return res.send(students);
+	}).catch((error) => {
+		next(error)
+	})
+}
+
+getStudentById = (req, res, next) => {
+	req.models.Student.findById(req.params.id).then((student) => {
+		return res.send(student);
 	}).catch((error) => {
 		next(error)
 	})
@@ -27,5 +41,6 @@ getStudents = (req, res, next) => {
 
 module.exports = {
 	addStudent,
-	getStudents
+	getStudents,
+	getStudentById
 }
