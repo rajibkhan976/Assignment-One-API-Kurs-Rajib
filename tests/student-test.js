@@ -24,7 +24,7 @@ afterEach(() => {
 	studentMock.verify();
 });
 
-describe('Bong-bong integrations tests', () => {
+describe('Bong-bong integration tests', () => {
 	
 	const request = {
 		"students":
